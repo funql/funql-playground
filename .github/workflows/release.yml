@@ -47,6 +47,8 @@ jobs:
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
+        # Only push to vercel for commits to main
+        if: github.ref == 'refs/heads/main'
         # --skip-domain so that deployment must be manually promoted
         run: vercel deploy --prebuilt --prod --skip-domain --token=${{ secrets.VERCEL_TOKEN }}
 
