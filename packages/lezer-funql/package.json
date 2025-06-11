@@ -1,0 +1,32 @@
+{
+  "name": "@workspace/lezer-funql",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "description": "FunQL language support for CodeMirror",
+  "scripts": {
+    "test": "mocha test/test.js",
+    "prepare": "rollup -c"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@codemirror/language": "^6.11.0",
+    "@lezer/highlight": "^1.2.1",
+    "@lezer/lr": "^1.4.2"
+  },
+  "devDependencies": {
+    "@lezer/generator": "^1.7.3",
+    "mocha": "^11.2.2",
+    "rollup": "^4.40.2",
+    "rollup-plugin-dts": "^6.2.1",
+    "rollup-plugin-ts": "^3.4.5",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,7 @@
+# Booleans
+
+true
+
+==>
+
+Query(FunctionArgument(Boolean))

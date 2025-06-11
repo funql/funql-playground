@@ -1,0 +1,62 @@
+@top Query { FunctionCall | list<FunctionArgument>? }
+
+@skip { whitespace | Comment }
+
+FunctionCall {
+  identifier "(" list<FunctionArgument>?? ")"
+}
+
+FunctionArgument {
+  FunctionCall |
+  FieldPath |
+  value
+}
+
+FieldPath {
+  Field (("." Field) | ("[" String "]"))*
+}
+
+Field {
+  identifier | "$it"
+}
+
+value { Boolean | Null | Number | String | Object | Array }
+
+String[isolate] { string }
+Object { "{" list<Property>? "}" }
+Array { "[" list<value>? "]" }
+
+Property { PropertyName ":" value }
+PropertyName[isolate] { string }
+
+@tokens {
+  Boolean { "true" | "false" }
+  Null { "null" }
+
+  Number { '-'? int frac? exp? }
+  int { '0' | $[1-9] @digit* }
+  frac { '.' @digit+ }
+  exp { $[eE] $[+\-]? @digit+ }
+
+  string { '"' char* '"' }
+  char { $[\u{20}\u{21}\u{23}-\u{5b}\u{5d}-\u{10ffff}] | "\\" esc }
+  esc { $["\\\/bfnrt] | "u" hex hex hex hex }
+  hex { $[0-9a-fA-F] }
+
+  whitespace { @whitespace+ }
+
+  identifier { $[a-zA-Z] $[a-zA-Z0-9]* }
+  @precedence { Boolean, Null, identifier }
+
+  Comment[isolate] {
+    "//" ![\n]*
+  }
+
+  "(" ")" "{" "}" "[" "]"
+  ":" "." ","
+  "$"
+}
+
+list<item> { item ("," item)* }
+
+@detectDelim

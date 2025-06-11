@@ -1,0 +1,101 @@
+{
+  "AppLayout": {
+    "ThemeSwitcher": {
+      "toggleThemeSrText": "Wijzig thema",
+      "lightText": "Licht",
+      "darkText": "Donker",
+      "systemText": "Systeem"
+    },
+    "LocaleSwitcher": {
+      "locales": {
+        "en": {
+          "codeLabel": "EN",
+          "nameLabel": "English"
+        },
+        "nl": {
+          "codeLabel": "NL",
+          "nameLabel": "Nederlands"
+        }
+      }
+    }
+  },
+  "HomePage": {
+    "request": {
+      "RequestHeaderDropdown": {
+        "resetText": "Resetten"
+      },
+      "RequestQueryParameters": {
+        "titleText": "Query parameters"
+      },
+      "RequestSendButton": {
+        "sendText": "Verzenden",
+        "cancelText": "Annuleren"
+      }
+    },
+    "response": {
+      "ResponseHeader": {
+        "titleText": "Response",
+        "tabs": {
+          "bodyText": "Body",
+          "headersText": "Headers"
+        }
+      },
+      "ResponseMetadata": {
+        "responseTimeMillisText": "{value, number} ms"
+      },
+      "ResponseNoResponse": {
+        "sendHint": "Klik op Verzenden voor een response"
+      }
+    },
+    "sidebar": {
+      "SidebarDocsLink": {
+        "title": "Meer informatie",
+        "description": "Bekijk de documentatie"
+      },
+      "MobileSidebar": {
+        "titleSrText": "Specificatie-navigatie",
+        "toggleMenuSrText": "Open menu"
+      }
+    }
+  },
+  "funql": {
+    "functions": {
+      "year": {
+        "documentation": "Returns the year component of a DateTime value."
+      },
+      "month": {
+        "documentation": "Returns the month component of a DateTime value."
+      },
+      "day": {
+        "documentation": "Returns the day of the month component of a DateTime value."
+      },
+      "hour": {
+        "documentation": "Returns the hour component of a DateTime value."
+      },
+      "minute": {
+        "documentation": "Returns the minute component of a DateTime value."
+      },
+      "second": {
+        "documentation": "Returns the second component of a DateTime value."
+      },
+      "millisecond": {
+        "documentation": "Returns the millisecond component of a DateTime value."
+      },
+      "round": {
+        "documentation": "Rounds a number to the nearest integer."
+      },
+      "floor": {
+        "documentation": "Rounds a number down to the nearest integer."
+      },
+      "ceiling": {
+        "documentation": "Rounds a number up to the nearest integer."
+      },
+      "lower": {
+        "documentation": "Converts a string to lowercase."
+      },
+      "upper": {
+        "documentation": "Converts a string to uppercase."
+      }
+    }
+  }
+}
