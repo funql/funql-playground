@@ -14,8 +14,6 @@ export function AppHeader() {
       </div>
 
       <div className="flex items-center justify-end">
-        <LocaleSwitcher/>
-
         <Button asChild size="icon" variant="ghost">
           <a
             href={siteConfig.links.github}
@@ -25,6 +23,8 @@ export function AppHeader() {
             <Icons.GitHub className="size-5"/>
           </a>
         </Button>
+
+        <LocaleSwitcher/>
 
         <ThemeSelector/>
       </div>
