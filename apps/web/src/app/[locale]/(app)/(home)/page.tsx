@@ -1,15 +1,28 @@
 import * as React from "react";
 import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from "@workspace/ui/components/resizable";
 import {funqlPlaygroundApiSpec} from "@/config/spec";
-import {EditorStateProvider} from "@/app/[locale]/(app)/(home)/_hooks/useEditorState";
 import {SpecificationProvider} from "@/app/[locale]/(app)/(home)/_hooks/useSpecification";
 import SidebarSection from "@/app/[locale]/(app)/(home)/_components/sidebar/SidebarSection";
 import RequestSection from "@/app/[locale]/(app)/(home)/_components/request/RequestSection";
 import ResponseSection from "@/app/[locale]/(app)/(home)/_components/response/ResponseSection";
 import ExecuteResizableHandle from "@/app/[locale]/(app)/(home)/_components/ExecuteResizableHandle";
 import {ExecutionProvider} from "@/app/[locale]/(app)/(home)/_hooks/useExecution";
+import {Locale} from "next-intl";
+import {setRequestLocale} from "next-intl/server";
+import {EditorStateProvider} from "@/app/[locale]/(app)/(home)/_hooks/useEditorState";
 
-export default function HomePage() {
+type HomePageProps = {
+  params: Promise<{locale: Locale}>
+}
+
+export default async function HomePage({
+  params
+}: HomePageProps) {
+  const { locale } = await params
+
+  // Enable static rendering
+  setRequestLocale(locale)
+
   return (
     <SpecificationProvider specification={funqlPlaygroundApiSpec} initialSelectedRequestId={"listSets"}>
       <EditorStateProvider>

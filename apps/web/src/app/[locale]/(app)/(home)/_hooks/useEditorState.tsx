@@ -1,6 +1,16 @@
 "use client"
 
-import {createContext, Dispatch, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from "react";
+import React, {
+  createContext,
+  Dispatch,
+  ReactNode,
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import {isRequest, Specification, SpecificationRequestItem, walkItem} from "@/lib/specification";
 import {produce, WritableDraft} from "immer";
 import {KeyValue, RequestState} from "@/lib/request";
@@ -109,7 +119,7 @@ type EditorStateProviderProps = {
   children: ReactNode
 }
 
-export function EditorStateProvider({
+function EditorStateProvider({
   children
 }: EditorStateProviderProps) {
   const [searchParams, setSearchParams] = useHistorySearchParams()
@@ -215,3 +225,17 @@ export function EditorStateProvider({
     </EditorStateContext.Provider>
   )
 }
+
+// <EditorStateProvider/> uses useSearchParams(), which needs to be wrapped in a <Suspense/> for static rendering: See
+// https://nextjs.org/docs/app/api-reference/functions/use-search-params#static-rendering
+function SuspenseEditorStateProvider({
+  ...props
+}: React.ComponentProps<typeof EditorStateProvider>) {
+  return (
+    <Suspense>
+      <EditorStateProvider {...props}/>
+    </Suspense>
+  )
+}
+
+export { SuspenseEditorStateProvider as EditorStateProvider }

@@ -1,6 +1,15 @@
 "use client"
 
-import {createContext, Dispatch, ReactNode, SetStateAction, useContext, useMemo, useState} from "react";
+import React, {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  Suspense,
+  useContext,
+  useMemo,
+  useState
+} from "react";
 import {
   findItem, isRequest,
   Specification,
@@ -33,7 +42,7 @@ type SpecificationProviderProps = {
   children: ReactNode
 }
 
-export function SpecificationProvider({
+function SpecificationProvider({
   specification,
   initialSelectedRequestId,
   children
@@ -98,3 +107,17 @@ export function SpecificationProvider({
     </SpecificationContext.Provider>
   )
 }
+
+// <SpecificationProvider/> uses useSearchParams(), which needs to be wrapped in a <Suspense/> for static rendering: See
+// https://nextjs.org/docs/app/api-reference/functions/use-search-params#static-rendering
+function SuspenseSpecificationProvider({
+  ...props
+}: React.ComponentProps<typeof SpecificationProvider>) {
+  return (
+    <Suspense>
+      <SpecificationProvider {...props}/>
+    </Suspense>
+  )
+}
+
+export { SuspenseSpecificationProvider as SpecificationProvider }
