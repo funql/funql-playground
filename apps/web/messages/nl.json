@@ -1,4 +1,9 @@
 {
+  "LocaleLayout": {
+    "metadata": {
+      "description": "Experimenteer met FunQL"
+    }
+  },
   "AppLayout": {
     "ThemeSwitcher": {
       "toggleThemeSrText": "Wijzig thema",

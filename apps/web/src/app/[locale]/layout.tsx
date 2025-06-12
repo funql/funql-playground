@@ -1,11 +1,12 @@
-import {hasLocale} from 'next-intl'
+import {hasLocale, Locale} from 'next-intl'
 import {notFound} from 'next/navigation'
 import {routing} from '@/i18n/routing'
 import { Geist, Geist_Mono } from "next/font/google"
-import React from "react";
+import React, {ReactNode} from "react";
 import {Providers} from "@/app/[locale]/providers";
-import {setRequestLocale} from "next-intl/server";
+import {getTranslations, setRequestLocale} from "next-intl/server";
 import {cn} from "@workspace/ui/lib/utils";
+import {Metadata} from "next";
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -21,13 +22,29 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
 }
 
+type LocaleLayoutProps = {
+  children: ReactNode
+  params: Promise<{locale: Locale}>
+}
+
+type MetadataProps = Omit<LocaleLayoutProps, "children">
+
+export async function generateMetadata({
+  params
+}: MetadataProps): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "LocaleLayout.metadata" })
+
+  return {
+    title: "FunQL Playground API",
+    description: t("description"),
+  }
+}
+
 export default async function LocaleLayout({
   children,
   params
-}: {
-  children: React.ReactNode
-  params: Promise<{locale: string}>
-}) {
+}: LocaleLayoutProps) {
   // Ensure that the incoming `locale` is valid
   const {locale} = await params
   if (!hasLocale(routing.locales, locale)) {
