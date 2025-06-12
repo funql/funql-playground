@@ -1,10 +1,10 @@
-{
+﻿{
   "AppLayout": {
     "ThemeSwitcher": {
-      "toggleThemeSrText": "Wijzig thema",
-      "lightText": "Licht",
-      "darkText": "Donker",
-      "systemText": "Systeem"
+      "toggleThemeSrText": "Thema wechseln",
+      "lightText": "Hell",
+      "darkText": "Dunkel",
+      "systemText": "System"
     },
     "LocaleSwitcher": {
       "locales": {
@@ -26,14 +26,14 @@
   "HomePage": {
     "request": {
       "RequestHeaderDropdown": {
-        "resetText": "Resetten"
+        "resetText": "Zurücksetzen"
       },
       "RequestQueryParameters": {
-        "titleText": "Query parameters"
+        "titleText": "Abfrageparameter"
       },
       "RequestSendButton": {
-        "sendText": "Verzenden",
-        "cancelText": "Annuleren"
+        "sendText": "Senden",
+        "cancelText": "Abbrechen"
       }
     },
     "response": {
@@ -48,17 +48,17 @@
         "responseTimeMillisText": "{value, number} ms"
       },
       "ResponseNoResponse": {
-        "sendHint": "Klik op Verzenden voor een response"
+        "sendHint": "Klicken Sie auf Senden, um eine Response zu erhalten"
       }
     },
     "sidebar": {
       "SidebarDocsLink": {
-        "title": "Meer informatie",
-        "description": "Bekijk de documentatie"
+        "title": "Mehr erfahren",
+        "description": "Lesen Sie die Dokumentation"
       },
       "MobileSidebar": {
-        "titleSrText": "Specificatie-navigatie",
-        "toggleMenuSrText": "Open menu"
+        "titleSrText": "Spezifikationsnavigation",
+        "toggleMenuSrText": "Menü umschalten"
       }
     }
   },

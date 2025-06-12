@@ -15,6 +15,10 @@
         "nl": {
           "codeLabel": "NL",
           "nameLabel": "Nederlands"
+        },
+        "de": {
+          "codeLabel": "DE",
+          "nameLabel": "Deutsch"
         }
       }
     }
