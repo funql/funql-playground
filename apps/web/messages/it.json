@@ -1,10 +1,10 @@
 ﻿{
   "AppLayout": {
     "ThemeSwitcher": {
-      "toggleThemeSrText": "Changer le thème",
-      "lightText": "Clair",
-      "darkText": "Sombre",
-      "systemText": "Système"
+      "toggleThemeSrText": "Cambia tema",
+      "lightText": "Chiaro",
+      "darkText": "Scuro",
+      "systemText": "Sistema"
     },
     "LocaleSwitcher": {
       "locales": {
@@ -34,14 +34,14 @@
   "HomePage": {
     "request": {
       "RequestHeaderDropdown": {
-        "resetText": "Réinitialiser"
+        "resetText": "Reimposta"
       },
       "RequestQueryParameters": {
-        "titleText": "Paramètres de requête"
+        "titleText": "Parametri di query"
       },
       "RequestSendButton": {
-        "sendText": "Envoyer",
-        "cancelText": "Annuler"
+        "sendText": "Invia",
+        "cancelText": "Annulla"
       }
     },
     "response": {
@@ -56,17 +56,17 @@
         "responseTimeMillisText": "{value, number} ms"
       },
       "ResponseNoResponse": {
-        "sendHint": "Cliquez sur Envoyer pour obtenir une response"
+        "sendHint": "Fai clic su Invia per ottenere una response"
       }
     },
     "sidebar": {
       "SidebarDocsLink": {
-        "title": "En savoir plus",
-        "description": "Consultez la documentation"
+        "title": "Scopri di più",
+        "description": "Consulta la documentazione"
       },
       "MobileSidebar": {
-        "titleSrText": "Navigation de la spécification",
-        "toggleMenuSrText": "Basculer le menu"
+        "titleSrText": "Navigazione della specifica",
+        "toggleMenuSrText": "Attiva/disattiva menu"
       }
     }
   },
