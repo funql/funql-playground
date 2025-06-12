@@ -1,10 +1,10 @@
 ﻿{
   "AppLayout": {
     "ThemeSwitcher": {
-      "toggleThemeSrText": "Thema wechseln",
-      "lightText": "Hell",
-      "darkText": "Dunkel",
-      "systemText": "System"
+      "toggleThemeSrText": "Changer le thème",
+      "lightText": "Clair",
+      "darkText": "Sombre",
+      "systemText": "Système"
     },
     "LocaleSwitcher": {
       "locales": {
@@ -30,14 +30,14 @@
   "HomePage": {
     "request": {
       "RequestHeaderDropdown": {
-        "resetText": "Zurücksetzen"
+        "resetText": "Réinitialiser"
       },
       "RequestQueryParameters": {
-        "titleText": "Abfrageparameter"
+        "titleText": "Paramètres de requête"
       },
       "RequestSendButton": {
-        "sendText": "Senden",
-        "cancelText": "Abbrechen"
+        "sendText": "Envoyer",
+        "cancelText": "Annuler"
       }
     },
     "response": {
@@ -52,17 +52,17 @@
         "responseTimeMillisText": "{value, number} ms"
       },
       "ResponseNoResponse": {
-        "sendHint": "Klicken Sie auf Senden, um eine Response zu erhalten"
+        "sendHint": "Cliquez sur Envoyer pour obtenir une response"
       }
     },
     "sidebar": {
       "SidebarDocsLink": {
-        "title": "Mehr erfahren",
-        "description": "Lesen Sie die Dokumentation"
+        "title": "En savoir plus",
+        "description": "Consultez la documentation"
       },
       "MobileSidebar": {
-        "titleSrText": "Spezifikationsnavigation",
-        "toggleMenuSrText": "Menü umschalten"
+        "titleSrText": "Navigation de la spécification",
+        "toggleMenuSrText": "Basculer le menu"
       }
     }
   },
