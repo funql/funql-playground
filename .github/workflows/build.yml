@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: build
+on:
+  # Allow running the workflow manually from the GitHub UI
+  workflow_dispatch:
+  # release.yml already builds for pushes to main, this is only for PRs (release.yml uses secrets, which should not be
+  # used by PRs)
+  pull_request:
+    branches:
+      # Run the workflow for all pull requests for the main branch
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+          cache-dependency-path: ./pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build source
+        run: pnpm run build
+
+      - name: Lint source
+        run: pnpm run lint
+
