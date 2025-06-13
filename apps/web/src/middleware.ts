@@ -1,6 +1,7 @@
 import createMiddleware from 'next-intl/middleware'
 import {routing} from './i18n/routing'
 import {NextRequest} from "next/server";
+import {NextURL} from "next/dist/server/web/next-url";
 
 const i18nMiddleware = createMiddleware(routing)
 
@@ -11,6 +12,11 @@ export function middleware(request: NextRequest) {
   if (response.status === 307) {
     console.log(`response.url: ${response.url}`)
     console.log(`response.headers["location"]: ${response.headers.get("location")}`)
+    const redirect = response.headers.get('Location')
+    if (redirect) {
+      const redirectURL = new NextURL(redirect)
+      console.log(`redictURL.toString(): ${redirectURL.toString()}`)
+    }
   }
   return response
 }
