@@ -3,6 +3,7 @@
 # FunQL Playground
 
 [![License: GPLv2/Commercial](https://img.shields.io/badge/license-GPLv2%20or%20Commercial-orange.svg)](https://github.com/funql/funql-playground/blob/main/LICENSE)
+[![Build status](https://github.com/funql/funql-playground/workflows/build/badge.svg)](https://github.com/funql/funql-playground/actions/workflows/build.yml)
 
 The FunQL Playground allows anyone to experiment with [FunQL](https://funql.io/) — the Functional Query Language
 — through a simple UI.
