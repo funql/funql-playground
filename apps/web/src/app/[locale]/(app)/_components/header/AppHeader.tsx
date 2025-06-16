@@ -2,7 +2,7 @@ import { Icons } from "@/components/Icons";
 import {siteConfig} from "@/config/site";
 import {Button} from "@workspace/ui/components/button";
 import {ThemeSelector} from "@/app/[locale]/(app)/_components/header/ThemeSelector";
-import {LocaleSwitcher} from "@/app/[locale]/(app)/_components/header/LocaleSwitcher";
+import LocaleSwitcher from "@/app/[locale]/(app)/_components/header/LocaleSwitcher";
 
 export function AppHeader() {
   return (

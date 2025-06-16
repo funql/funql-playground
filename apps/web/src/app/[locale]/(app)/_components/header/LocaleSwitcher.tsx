@@ -1,7 +1,7 @@
 "use client"
 
 import {usePathname, useRouter} from "@/i18n/navigation";
-import React, {Suspense, useTransition} from "react";
+import React, {useTransition} from "react";
 import {useParams, useSearchParams} from "next/navigation";
 import {
   DropdownMenu,
@@ -13,7 +13,7 @@ import {Button} from "@workspace/ui/components/button";
 import {useLocale, useTranslations} from "next-intl";
 import {routing} from "@/i18n/routing";
 
-function LocaleSwitcher({
+export default function LocaleSwitcher({
   ...props
 }: React.ComponentProps<typeof Button>) {
   const t = useTranslations("AppLayout.LocaleSwitcher.locales")
@@ -59,17 +59,3 @@ function LocaleSwitcher({
     </DropdownMenu>
   )
 }
-
-// <LocaleSwitcher/> uses useSearchParams(), which needs to be wrapped in a <Suspense/> for static rendering: See
-// https://nextjs.org/docs/app/api-reference/functions/use-search-params#static-rendering
-function SuspenseLocaleSwitcher({
-  ...props
-}: React.ComponentProps<typeof LocaleSwitcher>) {
-  return (
-    <Suspense>
-      <LocaleSwitcher {...props}/>
-    </Suspense>
-  )
-}
-
-export { SuspenseLocaleSwitcher as LocaleSwitcher }

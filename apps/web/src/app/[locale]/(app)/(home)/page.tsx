@@ -7,22 +7,9 @@ import RequestSection from "@/app/[locale]/(app)/(home)/_components/request/Requ
 import ResponseSection from "@/app/[locale]/(app)/(home)/_components/response/ResponseSection";
 import ExecuteResizableHandle from "@/app/[locale]/(app)/(home)/_components/ExecuteResizableHandle";
 import {ExecutionProvider} from "@/app/[locale]/(app)/(home)/_hooks/useExecution";
-import {Locale} from "next-intl";
-import {setRequestLocale} from "next-intl/server";
 import {EditorStateProvider} from "@/app/[locale]/(app)/(home)/_hooks/useEditorState";
 
-type HomePageProps = {
-  params: Promise<{locale: Locale}>
-}
-
-export default async function HomePage({
-  params
-}: HomePageProps) {
-  const { locale } = await params
-
-  // Enable static rendering
-  setRequestLocale(locale)
-
+export default function HomePage() {
   return (
     <SpecificationProvider specification={funqlPlaygroundApiSpec} initialSelectedRequestId={"listSets"}>
       <EditorStateProvider>
