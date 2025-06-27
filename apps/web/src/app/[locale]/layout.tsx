@@ -7,6 +7,7 @@ import {Providers} from "@/app/[locale]/providers";
 import {getTranslations, setRequestLocale} from "next-intl/server";
 import {cn} from "@workspace/ui/lib/utils";
 import {Metadata} from "next";
+import {Analytics} from "@vercel/analytics/next";
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -67,6 +68,7 @@ export default async function LocaleLayout({
         <Providers>
           {children}
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
