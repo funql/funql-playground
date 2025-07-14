@@ -1,7 +1,7 @@
 import {ComponentProps} from "react";
 import {ResizablePanel, ResizablePanelGroup} from "@workspace/ui/components/resizable";
 import {cn} from "@workspace/ui/lib/utils";
-import ExecuteResizableHandle from "@/app/[locale]/(app)/(home)/_components/ExecuteResizableHandle";
+import ExecuteResizableHandle from "@/app/[locale]/(app)/(home)/_components/request-item/ExecuteResizableHandle";
 import ResponseSection from "@/app/[locale]/(app)/(home)/_components/request-item/response/ResponseSection";
 import * as React from "react";
 import RequestSection from "@/app/[locale]/(app)/(home)/_components/request-item/request/RequestSection";
