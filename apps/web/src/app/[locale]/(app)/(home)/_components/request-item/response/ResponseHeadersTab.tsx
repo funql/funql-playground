@@ -14,10 +14,10 @@ export default function ResponseHeadersTab({
   const { activeRequest } = useEditorState()
 
   const headers = useMemo(() => {
-    return activeRequest.response && isFetchResponse(activeRequest.response)
+    return activeRequest?.response && isFetchResponse(activeRequest.response)
       ? activeRequest.response.headers
       : []
-  }, [activeRequest.response])
+  }, [activeRequest?.response])
 
   const headersText = useMemo(() => {
     let result = ""

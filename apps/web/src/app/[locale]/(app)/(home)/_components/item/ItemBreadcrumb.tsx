@@ -1,21 +1,20 @@
 "use client"
 
 import React, {Fragment} from "react";
-import {cn} from "@workspace/ui/lib/utils";
-import {useSpecification} from "@/app/[locale]/(app)/(home)/_hooks/useSpecification";
 import {
   BreadcrumbEllipsis,
   BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage,
+  BreadcrumbList, BreadcrumbPage,
   BreadcrumbSeparator
 } from "@workspace/ui/components/breadcrumb";
+import {useSpecification} from "@/app/[locale]/(app)/(home)/_hooks/useSpecification";
+import {cn} from "@workspace/ui/lib/utils";
 
-export default function RequestBreadcrumb({
+export default function ItemBreadcrumb({
   className,
   ...props
 }: React.ComponentProps<typeof BreadcrumbList>) {
-  const { selectedRequest: [parents, request] } = useSpecification()
+  const { selectedItem: [parents, item] } = useSpecification()
 
   return (
     <BreadcrumbList
@@ -44,7 +43,7 @@ export default function RequestBreadcrumb({
         </Fragment>
       ))}
 
-      {parents.length > 2 && (
+      {parents.length > 1 && (
         <>
           <BreadcrumbEllipsis className="sm:hidden w-5" />
           <BreadcrumbSeparator className="sm:hidden" />
@@ -53,7 +52,7 @@ export default function RequestBreadcrumb({
 
       <BreadcrumbItem>
         <BreadcrumbPage>
-          {request.name}
+          {item.name}
         </BreadcrumbPage>
       </BreadcrumbItem>
     </BreadcrumbList>

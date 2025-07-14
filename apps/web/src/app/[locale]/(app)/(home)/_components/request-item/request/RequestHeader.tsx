@@ -1,8 +1,8 @@
 import React from "react";
 import {cn} from "@workspace/ui/lib/utils";
-import RequestBreadcrumb from "@/app/[locale]/(app)/(home)/_components/request/RequestBreadcrumb";
-import RequestHeaderDropdown from "@/app/[locale]/(app)/(home)/_components/request/RequestHeaderDropdown";
 import MobileSidebar from "@/app/[locale]/(app)/(home)/_components/sidebar/MobileSidebar";
+import ItemBreadcrumb from "@/app/[locale]/(app)/(home)/_components/item/ItemBreadcrumb";
+import RequestHeaderDropdown from "@/app/[locale]/(app)/(home)/_components/request-item/request/RequestHeaderDropdown";
 
 export default function RequestHeader({
   className,
@@ -19,7 +19,7 @@ export default function RequestHeader({
       <div className="flex flex-1 h-full items-center gap-1 ps-2 md:ps-4">
         <MobileSidebar/>
 
-        <RequestBreadcrumb className="flex-1 w-0 h-full"/>
+        <ItemBreadcrumb className="flex-1 w-0 h-full"/>
       </div>
 
       <RequestHeaderDropdown/>

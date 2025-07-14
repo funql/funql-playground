@@ -168,7 +168,7 @@ export default function ResponseNoResponse({
   // We'll show a random icon each time the request changes, just for fun
   useEffect(() => {
     setRandomIcon()
-  }, [setIcon, activeRequest.id])
+  }, [setIcon, activeRequest?.id])
 
   const onIconClick = (event: React.MouseEvent) => {
     if (Icon === PartyPopper && !partyPopped) {

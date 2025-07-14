@@ -15,7 +15,7 @@ export default function ResponseMetadata({
 
   const { activeRequest } = useEditorState()
 
-  const fetchResponse = activeRequest.response && isFetchResponse(activeRequest.response)
+  const fetchResponse = activeRequest?.response && isFetchResponse(activeRequest.response)
     ? activeRequest.response
     : undefined
 
@@ -23,7 +23,7 @@ export default function ResponseMetadata({
     <div
       className={cn(
         "flex gap-1 items-center",
-        activeRequest.executing ? "hidden" : "",
+        activeRequest?.executing ? "hidden" : "",
         className
       )}
       {...props}

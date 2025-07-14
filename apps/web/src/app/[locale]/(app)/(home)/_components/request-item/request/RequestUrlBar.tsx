@@ -5,8 +5,8 @@ import {cn} from "@workspace/ui/lib/utils";
 import {useEditorState} from "@/app/[locale]/(app)/(home)/_hooks/useEditorState";
 import {RequestMethodText} from "@/components/request/RequestMethodText";
 import {Input} from "@workspace/ui/components/input";
-import RequestSendButton from "@/app/[locale]/(app)/(home)/_components/request/RequestSendButton";
 import {buildFullUrl} from "@/lib/request";
+import RequestSendButton from "@/app/[locale]/(app)/(home)/_components/request-item/request/RequestSendButton";
 
 export default function RequestUrlBar({
   className,
@@ -15,8 +15,11 @@ export default function RequestUrlBar({
   const { activeRequest } = useEditorState()
 
   const fullUrl = useMemo(() => {
-    return buildFullUrl(activeRequest)
+    return activeRequest ? buildFullUrl(activeRequest) : undefined
   }, [activeRequest])
+
+  if (!activeRequest)
+    return undefined
 
   return (
     <div
