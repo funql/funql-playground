@@ -8,7 +8,7 @@ import {EditorStateProvider} from "@/app/[locale]/(app)/(home)/_hooks/useEditorS
 
 export default function HomePage() {
   return (
-    <SpecificationProvider specification={funqlPlaygroundApiSpec} initialSelectedItemId={"listSets"}>
+    <SpecificationProvider specification={funqlPlaygroundApiSpec} initialSelectedItemId={funqlPlaygroundApiSpec.id}>
       <ResizablePanelGroup
         direction="horizontal"
         className="!h-[calc(100svh-var(--header-height))] bg-sidebar !overflow-visible"
