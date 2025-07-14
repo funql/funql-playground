@@ -89,6 +89,8 @@ export function SpecificationProvider({
     const itemId = searchParams.find(it => it[0] === "item")?.at(1)
     if (itemId && findItem(specification, itemId)) {
       setSelectedItemId(itemId)
+    } else {
+      setSelectedItemId(initialSelectedItemId)
     }
   }, [searchParams])
 
