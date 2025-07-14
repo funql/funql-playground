@@ -33,7 +33,7 @@ export default function GroupItem({
           "flex flex-1 flex-col overflow-auto px-4 pt-1 gap-4",
         )}
       >
-        <div className="@container flex flex-wrap gap-2">
+        <div className="@container flex flex-wrap gap-4">
           <div className="flex flex-col flex-1">
             {parents.length > 0 && (
               <span className="text-lg font-medium">{item.name}</span>
@@ -53,7 +53,7 @@ export default function GroupItem({
             )}
           </div>
 
-          <div className="flex flex-col gap-2 h-fit p-2 @min-3xl:border-s @min-3xl:w-72 @max-3xl:px-0 @max-3xl:border-t @max-3xl:w-full">
+          <div className="flex flex-col h-fit py-2 px-4 @min-3xl:border-s @min-3xl:w-72 @max-3xl:py-4 @max-3xl:px-0 @max-3xl:border-t @max-3xl:w-full">
             <GroupTryRequests />
           </div>
         </div>
