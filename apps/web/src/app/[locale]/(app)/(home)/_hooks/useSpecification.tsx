@@ -5,7 +5,7 @@ import React, {
   Dispatch,
   ReactNode,
   SetStateAction,
-  useContext,
+  useContext, useEffect,
   useMemo,
   useState
 } from "react";
@@ -84,6 +84,13 @@ export function SpecificationProvider({
 
     return [foundItem[0], foundItem[1]]
   }, [selectedItemId, specification])
+
+  useEffect(() => {
+    const itemId = searchParams.find(it => it[0] === "item")?.at(1)
+    if (itemId) {
+      setSelectedItemId(itemId)
+    }
+  }, [searchParams])
 
   return (
     <SpecificationContext.Provider
