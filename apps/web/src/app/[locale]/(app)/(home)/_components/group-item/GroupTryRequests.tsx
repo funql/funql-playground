@@ -12,11 +12,14 @@ import {RequestMethodText} from "@/components/request/RequestMethodText";
 import {FolderIcon} from "lucide-react";
 import {Button} from "@workspace/ui/components/button";
 import {Link} from "@/i18n/navigation";
+import {useTranslations} from "next-intl";
 
 export default function GroupTryRequests({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const t = useTranslations("HomePage.group-item.GroupTryRequests")
+
   const { setSelectedItemId, selectedItem: [, item] } = useSpecification()
 
   if (!isGroup(item))
@@ -46,7 +49,7 @@ export default function GroupTryRequests({
       {...props}
     >
       <span className="text-sm font-medium text-accent-foreground">
-        Some requests in this folder
+        {t("title")}
       </span>
 
       <div className="flex flex-col gap-2">

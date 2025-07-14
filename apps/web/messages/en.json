@@ -73,6 +73,14 @@
         "titleSrText": "Specification navigation",
         "toggleMenuSrText": "Toggle menu"
       }
+    },
+    "group-item": {
+      "GroupItem": {
+        "noDescriptionText": "This folder doesn't have a description"
+      },
+      "GroupTryRequests": {
+        "title": "Some requests in this folder"
+      }
     }
   },
   "funql": {

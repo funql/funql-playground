@@ -5,11 +5,14 @@ import Markdown from "@/components/Markdown";
 import {useSpecification} from "@/app/[locale]/(app)/(home)/_hooks/useSpecification";
 import {isGroup} from "@/lib/specification";
 import GroupTryRequests from "@/app/[locale]/(app)/(home)/_components/group-item/GroupTryRequests";
+import {useTranslations} from "next-intl";
 
 export default function GroupItem({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const t = useTranslations("HomePage.group-item.GroupItem")
+
   const { selectedItem: [parents, item] } = useSpecification()
 
   if (!isGroup(item))
@@ -44,7 +47,9 @@ export default function GroupItem({
             )}
 
             {!item.description && (
-              <span className="text-muted-foreground">This folder doesn't have a description</span>
+              <span className="text-muted-foreground">
+                {t("noDescriptionText")}
+              </span>
             )}
           </div>
 
