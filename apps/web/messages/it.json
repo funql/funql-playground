@@ -73,6 +73,14 @@
         "titleSrText": "Navigazione della specifica",
         "toggleMenuSrText": "Attiva/disattiva menu"
       }
+    },
+    "group-item": {
+      "GroupItem": {
+        "noDescriptionText": "Questa cartella non ha una descrizione"
+      },
+      "GroupTryRequests": {
+        "title": "Alcune requests in questa cartella"
+      }
     }
   },
   "funql": {
