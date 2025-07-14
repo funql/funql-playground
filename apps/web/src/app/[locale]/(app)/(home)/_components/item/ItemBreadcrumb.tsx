@@ -3,12 +3,13 @@
 import React, {Fragment} from "react";
 import {
   BreadcrumbEllipsis,
-  BreadcrumbItem,
+  BreadcrumbItem, BreadcrumbLink,
   BreadcrumbList, BreadcrumbPage,
   BreadcrumbSeparator
 } from "@workspace/ui/components/breadcrumb";
 import {useSpecification} from "@/app/[locale]/(app)/(home)/_hooks/useSpecification";
 import {cn} from "@workspace/ui/lib/utils";
+import {Link} from "@/i18n/navigation";
 
 export default function ItemBreadcrumb({
   className,
@@ -32,7 +33,11 @@ export default function ItemBreadcrumb({
               index > 0 && "hidden sm:block"
             )}
           >
-            {it.name}
+            <BreadcrumbLink asChild>
+              <Link href={`?item=${it.id}`}>
+                {it.name}
+              </Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator
             className={cn(
