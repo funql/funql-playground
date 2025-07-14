@@ -15,7 +15,6 @@ import {
   SpecificationGroupItem, SpecificationItem,
   walkItem,
 } from "@/lib/specification";
-import {useEditorStorage} from "@/app/[locale]/(app)/(home)/_hooks/useEditorStorage";
 import useHistorySearchParams from "@/app/[locale]/(app)/(home)/_hooks/useHistorySearchParams";
 
 type SpecificationContextProps = {
@@ -47,7 +46,6 @@ export function SpecificationProvider({
   children
 }: SpecificationProviderProps) {
   const [searchParams] = useHistorySearchParams()
-  const [storageData] = useEditorStorage()
 
   const findInitialId = () => {
     const urlItemId = searchParams.find(it => it[0] === "item")?.at(1)
@@ -62,12 +60,6 @@ export function SpecificationProvider({
 
       if (currentItem.id === initialSelectedItemId) {
         foundInitialId = currentItem.id
-        if (!urlItemId && !storageData?.selectedItemId)
-          break
-      }
-
-      if (currentItem.id === storageData?.selectedItemId) {
-        foundStoredId = currentItem.id
         if (!urlItemId)
           break
       }

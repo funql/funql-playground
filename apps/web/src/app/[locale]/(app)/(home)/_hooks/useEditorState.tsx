@@ -208,7 +208,6 @@ export function EditorStateProvider({
 
   useDebounceEffect(() => {
     setEditorStorage({
-      selectedItemId: item.id,
       requests: requests.map(it => ({
         id: it.id,
         body: it.body,
