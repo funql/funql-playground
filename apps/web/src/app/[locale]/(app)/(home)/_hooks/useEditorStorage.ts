@@ -12,7 +12,7 @@ const RequestStorageDataSchema = z.object({
   headers: KeyValueSchema.array(),
 })
 const EditorStorageDataSchema = z.object({
-  selectedRequestId: z.string(),
+  selectedItemId: z.string(),
   requests: RequestStorageDataSchema.array(),
 })
 

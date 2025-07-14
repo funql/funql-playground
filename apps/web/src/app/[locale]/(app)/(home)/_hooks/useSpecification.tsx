@@ -12,17 +12,17 @@ import React, {
 import {
   findItem, isRequest,
   Specification,
-  SpecificationGroupItem,
-  SpecificationRequestItem, walkItem,
+  SpecificationGroupItem, SpecificationItem,
+  walkItem,
 } from "@/lib/specification";
 import {useEditorStorage} from "@/app/[locale]/(app)/(home)/_hooks/useEditorStorage";
 import useHistorySearchParams from "@/app/[locale]/(app)/(home)/_hooks/useHistorySearchParams";
 
 type SpecificationContextProps = {
   specification: Specification,
-  selectedRequest: [SpecificationGroupItem[], SpecificationRequestItem]
-  selectedRequestId: string
-  setSelectedRequestId: Dispatch<SetStateAction<string>>
+  selectedItem: [SpecificationGroupItem[], SpecificationItem]
+  selectedItemId: string
+  setSelectedItemId: Dispatch<SetStateAction<string>>
 }
 
 const SpecificationContext = createContext<SpecificationContextProps | null>(null)
@@ -37,20 +37,20 @@ export function useSpecification() {
 
 type SpecificationProviderProps = {
   specification: Specification,
-  initialSelectedRequestId: string,
+  initialSelectedItemId: string,
   children: ReactNode
 }
 
 export function SpecificationProvider({
   specification,
-  initialSelectedRequestId,
+  initialSelectedItemId,
   children
 }: SpecificationProviderProps) {
   const [searchParams] = useHistorySearchParams()
   const [storageData] = useEditorStorage()
 
   const findInitialId = () => {
-    const urlRequest = searchParams.find(it => it[0] === "request")?.at(1)
+    const urlItemId = searchParams.find(it => it[0] === "item")?.at(1)
     let firstRequestId = undefined
     let foundUrlId = undefined
     let foundStoredId = undefined
@@ -60,19 +60,19 @@ export function SpecificationProvider({
         firstRequestId = currentItem.id
       }
 
-      if (currentItem.id === initialSelectedRequestId) {
+      if (currentItem.id === initialSelectedItemId) {
         foundInitialId = currentItem.id
-        if (!urlRequest && !storageData?.selectedRequestId)
+        if (!urlItemId && !storageData?.selectedItemId)
           break
       }
 
-      if (currentItem.id === storageData?.selectedRequestId) {
+      if (currentItem.id === storageData?.selectedItemId) {
         foundStoredId = currentItem.id
-        if (!urlRequest)
+        if (!urlItemId)
           break
       }
 
-      if (currentItem.id === urlRequest) {
+      if (currentItem.id === urlItemId) {
         foundUrlId = currentItem.id
         break
       }
@@ -80,26 +80,26 @@ export function SpecificationProvider({
 
     const foundId = foundUrlId ?? foundStoredId ?? foundInitialId ?? firstRequestId
     if (!foundId)
-      throw new Error("No initial Request found")
+      throw new Error("No initial item found")
     return foundId
   }
 
-  const [selectedRequestId, setSelectedRequestId] = useState(findInitialId())
-  const selectedRequest: [SpecificationGroupItem[], SpecificationRequestItem] = useMemo(() => {
-    const foundItem = findItem(specification, selectedRequestId)
-    if (!foundItem || !isRequest(foundItem[1]))
-      throw new Error(`selectedRequestId '${selectedRequestId}' was not found in specification`)
+  const [selectedItemId, setSelectedItemId] = useState(findInitialId())
+  const selectedItem: [SpecificationGroupItem[], SpecificationItem] = useMemo(() => {
+    const foundItem = findItem(specification, selectedItemId)
+    if (!foundItem)
+      throw new Error(`selectedItemId '${selectedItemId}' was not found in specification`)
 
     return [foundItem[0], foundItem[1]]
-  }, [selectedRequestId, specification])
+  }, [selectedItemId, specification])
 
   return (
     <SpecificationContext.Provider
       value={{
         specification,
-        selectedRequest,
-        selectedRequestId,
-        setSelectedRequestId
+        selectedItem,
+        selectedItemId,
+        setSelectedItemId
       }}
     >
       {children}
