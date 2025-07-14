@@ -87,7 +87,7 @@ export function SpecificationProvider({
 
   useEffect(() => {
     const itemId = searchParams.find(it => it[0] === "item")?.at(1)
-    if (itemId) {
+    if (itemId && findItem(specification, itemId)) {
       setSelectedItemId(itemId)
     }
   }, [searchParams])
