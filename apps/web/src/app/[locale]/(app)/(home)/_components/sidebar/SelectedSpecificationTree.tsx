@@ -7,13 +7,13 @@ import {useSpecification} from "@/app/[locale]/(app)/(home)/_hooks/useSpecificat
 export default function SelectedSpecificationTree({
   ...props
 }: React.ComponentProps<React.ElementType>) {
-  const { specification, selectedRequestId, setSelectedRequestId } = useSpecification()
+  const { specification, selectedItemId, setSelectedItemId } = useSpecification()
 
   return (
     <SpecificationTree
       specification={specification}
-      selectedId={selectedRequestId}
-      onRequestClick={item => setSelectedRequestId(item.id)}
+      selectedId={selectedItemId}
+      onItemClick={item => setSelectedItemId(item.id)}
       {...props}
     />
   )

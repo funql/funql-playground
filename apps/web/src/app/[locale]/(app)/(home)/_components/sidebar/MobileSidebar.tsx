@@ -17,7 +17,7 @@ export default function MobileSidebar({
 }: React.ComponentProps<"button">) {
   const t = useTranslations("HomePage.sidebar.MobileSidebar")
 
-  const { specification, selectedRequestId, setSelectedRequestId } = useSpecification()
+  const { specification, selectedItemId, setSelectedItemId } = useSpecification()
   const [open, setOpen] = useState(false)
 
   return (
@@ -50,9 +50,9 @@ export default function MobileSidebar({
         <SpecificationTree
           className="px-4 pt-4"
           specification={specification}
-          selectedId={selectedRequestId}
-          onRequestClick={item => {
-            setSelectedRequestId(item.id)
+          selectedId={selectedItemId}
+          onItemClick={item => {
+            setSelectedItemId(item.id)
             setOpen(false)
           }}
         />
