@@ -12,6 +12,7 @@ import {ChevronRight} from "lucide-react";
 import {Button} from "@workspace/ui/components/button";
 import {RequestMethodText} from "@/components/request/RequestMethodText";
 import {useCallback, useState} from "react";
+import {Link, useRouter} from "@/i18n/navigation";
 
 type SpecificationTreeProps = {
   specification: Specification,
@@ -74,11 +75,14 @@ function SpecificationTreeGroupItem({
   ...props
 }: SpecificationTreeGroupItemProps) {
   const [open, setOpen] = useState(true)
+  const router = useRouter()
 
   const onGroupClick = useCallback(() => {
     if (!open) {
       setOpen(true)
     }
+
+    router.push(`/?item=${item.id}`)
 
     onItemClick(item)
   }, [open, setOpen])
@@ -119,7 +123,9 @@ function SpecificationTreeGroupItem({
                 )}
               />
             </CollapsibleTrigger>
-            {item.name}
+            <Link href={`?item=${item.id}`}>
+              {item.name}
+            </Link>
           </div>
         </Button>
         <CollapsibleContent>
@@ -156,12 +162,15 @@ function SpecificationTreeRequestItem({
       <TreeButton
         isActive={item.id === selectedId}
         onClick={() => onItemClick(item)}
+        asChild
       >
-        <RequestMethodText
-          className="mt-px text-end w-8 shrink-0"
-          method={item.request.method}
-        />
-        {item.name}
+        <Link href={`?item=${item.id}`}>
+          <RequestMethodText
+            className="mt-px text-end w-8 shrink-0"
+            method={item.request.method}
+          />
+          {item.name}
+        </Link>
       </TreeButton>
     </li>
   )
