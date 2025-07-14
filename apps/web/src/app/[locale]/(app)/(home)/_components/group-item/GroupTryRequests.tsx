@@ -46,7 +46,7 @@ export default function GroupTryRequests({
       {...props}
     >
       <span className="text-sm font-medium text-accent-foreground">
-        Try these requests
+        Some requests in this folder
       </span>
 
       <div className="flex flex-col gap-2">
