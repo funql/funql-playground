@@ -11,17 +11,18 @@ import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@workspace/ui
 import {ChevronRight} from "lucide-react";
 import {Button} from "@workspace/ui/components/button";
 import {RequestMethodText} from "@/components/request/RequestMethodText";
+import {useCallback, useState} from "react";
 
 type SpecificationTreeProps = {
   specification: Specification,
   selectedId: string
-  onRequestClick: (item: SpecificationRequestItem) => void
+  onItemClick: (item: SpecificationItem) => void
 } & React.ComponentProps<"ul">
 
 export default function SpecificationTree({
   specification,
   selectedId,
-  onRequestClick,
+  onItemClick,
   className,
   ...props
 }: SpecificationTreeProps) {
@@ -37,7 +38,7 @@ export default function SpecificationTree({
         className="min-w-fit"
         item={specification}
         selectedId={selectedId}
-        onRequestClick={onRequestClick}/>
+        onItemClick={onItemClick}/>
     </ul>
   )
 }
@@ -45,48 +46,82 @@ export default function SpecificationTree({
 type SpecificationTreeItemProps = {
   item: SpecificationItem,
   selectedId: string
-  onRequestClick: (item: SpecificationRequestItem) => void
+  onItemClick: (item: SpecificationItem) => void
 } & React.ComponentProps<React.ElementType>
 
 function SpecificationTreeItem({
   item,
   selectedId,
-  onRequestClick,
+  onItemClick,
   ...props
 }: SpecificationTreeItemProps) {
   return isGroup(item)
-    ? SpecificationTreeGroupItem({ item, selectedId, onRequestClick, ...props })
-    : SpecificationTreeRequestItem({ item, selectedId, onRequestClick, ...props })
+    ? SpecificationTreeGroupItem({ item, selectedId, onItemClick, ...props })
+    : SpecificationTreeRequestItem({ item, selectedId, onItemClick, ...props })
 }
 
 type SpecificationTreeGroupItemProps = {
   item: SpecificationGroupItem,
   selectedId: string
-  onRequestClick: (item: SpecificationRequestItem) => void
+  onItemClick: (item: SpecificationItem) => void
 } & React.ComponentProps<"li">
 
 function SpecificationTreeGroupItem({
   item,
   selectedId,
-  onRequestClick,
+  onItemClick,
   className,
   ...props
 }: SpecificationTreeGroupItemProps) {
+  const [open, setOpen] = useState(true)
+
+  const onGroupClick = useCallback(() => {
+    if (!open) {
+      setOpen(true)
+    }
+
+    onItemClick(item)
+  }, [open, setOpen])
+
   return (
     <li {...props}>
       <Collapsible
         className={cn(
-          "group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90",
+          "group/collapsible",
           className
         )}
-        defaultOpen={true}
+        open={open}
+        onOpenChange={setOpen}
       >
-        <CollapsibleTrigger asChild>
-          <TreeButton>
-            <ChevronRight className="transition-transform" />
+        <Button
+          data-active={item.id === selectedId}
+          onClick={onGroupClick}
+          className={cn(
+            "w-full items-center justify-start data-[active=true]:bg-accent data-[active=true]:font-medium data-[active=true]:text-accent-foreground !px-1 gap-1 font-normal h-7 cursor-pointer",
+            className
+          )}
+          variant="ghost"
+          size="sm"
+          asChild
+        >
+          <div>
+            <CollapsibleTrigger
+              className="hover:bg-border rounded-full p-0.5"
+              onClick={e => {
+                e.stopPropagation()
+                setOpen(!open)
+              }}
+            >
+              <ChevronRight
+                className={cn(
+                  "transition-transform hover:bg-border rounded-full",
+                  open && "rotate-90"
+                )}
+              />
+            </CollapsibleTrigger>
             {item.name}
-          </TreeButton>
-        </CollapsibleTrigger>
+          </div>
+        </Button>
         <CollapsibleContent>
           <ul className="ms-3 translate-x-px flex flex-col gap-1 ps-1 border-l border-transparent group-hover/tree:border-border">
             {item.items.map(child => (
@@ -94,7 +129,7 @@ function SpecificationTreeGroupItem({
                 key={child.id}
                 item={child}
                 selectedId={selectedId}
-                onRequestClick={onRequestClick}
+                onItemClick={onItemClick}
               />
             ))}
           </ul>
@@ -107,20 +142,20 @@ function SpecificationTreeGroupItem({
 type SpecificationTreeRequestItemProps = {
   item: SpecificationRequestItem,
   selectedId: string
-  onRequestClick: (item: SpecificationRequestItem) => void
+  onItemClick: (item: SpecificationItem) => void
 } & React.ComponentProps<"li">
 
 function SpecificationTreeRequestItem({
   item,
   selectedId,
-  onRequestClick,
+  onItemClick,
   ...props
 }: SpecificationTreeRequestItemProps) {
   return (
     <li {...props}>
       <TreeButton
         isActive={item.id === selectedId}
-        onClick={() => onRequestClick(item)}
+        onClick={() => onItemClick(item)}
       >
         <RequestMethodText
           className="mt-px text-end w-8 shrink-0"
