@@ -11,6 +11,7 @@ import {cn} from "@workspace/ui/lib/utils";
 import {RequestMethodText} from "@/components/request/RequestMethodText";
 import {FolderIcon} from "lucide-react";
 import {Button} from "@workspace/ui/components/button";
+import {Link} from "@/i18n/navigation";
 
 export default function GroupTryRequests({
   className,
@@ -62,7 +63,7 @@ export default function GroupTryRequests({
 }
 
 function TryRequestButton({
-  request,
+  request: [group, request],
   className,
   ...props
 }: { request: [SpecificationGroupItem, SpecificationRequestItem] } & React.ComponentProps<typeof Button>) {
@@ -74,22 +75,25 @@ function TryRequestButton({
       )}
       variant="ghost"
       size="lg"
+      asChild
       {...props}
     >
-      <div className="flex gap-2 items-center">
-        <RequestMethodText className="mt-0.5 w-8 text-right" method={request[1].request.method} />
+      <Link href={`?item=${request.id}`}>
+        <div className="flex gap-2 items-center">
+          <RequestMethodText className="mt-0.5 w-8 text-right" method={request.request.method} />
 
-        <span className="text-sm font-medium">
-          {request[1].name}
+          <span className="text-sm font-medium">
+          {request.name}
         </span>
-      </div>
+        </div>
 
-      <div className="flex gap-1 items-center ms-10">
-        <FolderIcon className="size-3 shrink-0"/>
-        <span className="text-sm font-light">
-          {request[0].name}
+        <div className="flex gap-1 items-center ms-10">
+          <FolderIcon className="size-3 shrink-0"/>
+          <span className="text-sm font-light">
+          {group.name}
         </span>
-      </div>
+        </div>
+      </Link>
     </Button>
   )
 }
