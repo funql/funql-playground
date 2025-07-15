@@ -65,7 +65,7 @@ To learn more about FunQL, visit [funql.io](https://funql.io).
 
 ---
 
-## Getting Started
+## Getting started
 
 1. Select a **request** from the sidebar  
 2. Edit the **FunQL query parameters**  
@@ -73,10 +73,10 @@ To learn more about FunQL, visit [funql.io](https://funql.io).
 
 ---
 
-## Learn More
+## Learn more
 
 - 📖 [funql.io](https://funql.io) – official documentation  
-- 💻 [GitHub Repository](https://github.com/funql/funql-playground) – source code
+- 💻 [GitHub repository](https://github.com/funql/funql-playground) – source code
 `
 
 export const funqlPlaygroundApiSpec: Specification = {
