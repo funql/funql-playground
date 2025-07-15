@@ -85,7 +85,7 @@ function SpecificationTreeGroupItem({
     router.push(`/?item=${item.id}`)
 
     onItemClick(item)
-  }, [open, setOpen])
+  }, [open, setOpen, router, item, onItemClick])
 
   return (
     <li {...props}>

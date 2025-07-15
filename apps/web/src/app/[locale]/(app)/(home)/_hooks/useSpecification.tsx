@@ -95,7 +95,7 @@ export function SpecificationProvider({
     } else {
       setSelectedItemId(initialSelectedItemId)
     }
-  }, [searchParams])
+  }, [searchParams, specification, initialSelectedItemId])
 
   return (
     <SpecificationContext.Provider
