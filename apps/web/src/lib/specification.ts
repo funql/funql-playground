@@ -9,6 +9,7 @@ export type SpecificationItem = SpecificationGroupItem | SpecificationRequestIte
 export type SpecificationGroupItem = {
   id: string
   name: string
+  description?: string
   items: SpecificationItem[],
 }
 

@@ -1,8 +1,9 @@
 import React from "react";
 import {cn} from "@workspace/ui/lib/utils";
-import RequestHeader from "@/app/[locale]/(app)/(home)/_components/request/RequestHeader";
-import RequestUrlBar from "@/app/[locale]/(app)/(home)/_components/request/RequestUrlBar";
-import RequestQueryParameters from "@/app/[locale]/(app)/(home)/_components/request/RequestQueryParameters";
+import RequestHeader from "@/app/[locale]/(app)/(home)/_components/request-item/request/RequestHeader";
+import RequestUrlBar from "@/app/[locale]/(app)/(home)/_components/request-item/request/RequestUrlBar";
+import RequestQueryParameters
+  from "@/app/[locale]/(app)/(home)/_components/request-item/request/RequestQueryParameters";
 
 export default function RequestSection({
   className,

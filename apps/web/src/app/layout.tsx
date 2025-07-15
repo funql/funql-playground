@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-import "@workspace/ui/globals.css"
+import "../styles/globals.css";
 
 type RootLayoutProps = {
   children: ReactNode

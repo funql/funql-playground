@@ -73,6 +73,14 @@
         "titleSrText": "Navigation de la spécification",
         "toggleMenuSrText": "Basculer le menu"
       }
+    },
+    "group-item": {
+      "GroupItem": {
+        "noDescriptionText": "Ce dossier n’a pas de description"
+      },
+      "GroupTryRequests": {
+        "title": "Quelques requests dans ce dossier"
+      }
     }
   },
   "funql": {

@@ -14,7 +14,7 @@ export default function ResponseBodyTab({
 }: Omit<React.ComponentProps<typeof TabsContent>, "value">) {
   const { activeRequest } = useEditorState()
 
-  const bodyText = activeRequest.response && isFetchResponse(activeRequest.response)
+  const bodyText = activeRequest?.response && isFetchResponse(activeRequest.response)
     ? activeRequest.response.body
     : ""
 

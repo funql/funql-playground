@@ -14,6 +14,9 @@ export default function RequestSendButton({
   const { activeRequest } = useEditorState()
   const { execute, cancel } = useExecution()
 
+  if (!activeRequest)
+    return undefined
+
   return (
     <Button
       onClick={() => !activeRequest.executing ? execute(activeRequest.id) : cancel(activeRequest.id)}

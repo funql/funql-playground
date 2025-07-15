@@ -26,7 +26,7 @@ export default function ExecuteResizableHandle({
       <div
         className={cn(
           "absolute top-0 left-0 w-full h-0.5 bg-blue-300 animate-progress origin-left z-20 peer-data-[resize-handle-state=hover]:h-1 peer-data-[resize-handle-state=hover]:-mt-[2px] peer-data-[resize-handle-active]:h-1 peer-data-[resize-handle-active]:-mt-[2px] transition-all pointer-events-none",
-          !activeRequest.executing && "hidden"
+          !activeRequest?.executing && "hidden"
         )}
       />
     </div>

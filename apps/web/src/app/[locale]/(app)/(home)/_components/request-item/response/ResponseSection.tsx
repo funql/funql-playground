@@ -1,7 +1,7 @@
 import React from "react";
 import {cn} from "@workspace/ui/lib/utils";
-import ResponseHeader from "@/app/[locale]/(app)/(home)/_components/response/ResponseHeader";
-import ResponseContent from "@/app/[locale]/(app)/(home)/_components/response/ResponseContent";
+import ResponseHeader from "@/app/[locale]/(app)/(home)/_components/request-item/response/ResponseHeader";
+import ResponseContent from "@/app/[locale]/(app)/(home)/_components/request-item/response/ResponseContent";
 import {Tabs} from "@workspace/ui/components/tabs";
 
 type ResponseSectionProps = {

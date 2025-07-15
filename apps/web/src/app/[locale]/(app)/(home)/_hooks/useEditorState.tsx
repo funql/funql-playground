@@ -10,7 +10,7 @@ import React, {
   useMemo,
   useState
 } from "react";
-import {isRequest, Specification, SpecificationRequestItem, walkItem} from "@/lib/specification";
+import {isRequest, Specification, SpecificationItem, SpecificationRequestItem, walkItem} from "@/lib/specification";
 import {produce, WritableDraft} from "immer";
 import {KeyValue, RequestState} from "@/lib/request";
 import {useSpecification} from "@/app/[locale]/(app)/(home)/_hooks/useSpecification";
@@ -24,7 +24,7 @@ import {useDebounceEffect} from "ahooks";
 
 type EditorState = {
   requests: RequestState[]
-  activeRequest: RequestState
+  activeRequest: RequestState|undefined
   updateActiveRequest: (reducer: Dispatch<WritableDraft<RequestState>>) => void
   resetActiveRequest: () => void
   updateRequest: (id: string, reducer: Dispatch<WritableDraft<RequestState>>) => void
@@ -42,13 +42,16 @@ export function useEditorState() {
 
 function restoreRequests(
   specification: Specification,
-  selectedRequestItem: SpecificationRequestItem,
+  selectedItem: SpecificationItem,
   editorStorage: EditorStorageData|undefined,
   searchParams: KeyValue[]
 ): RequestState[] {
   // Early return if no storage
-  if (!editorStorage)
-    return [buildRequestState(specification, selectedRequestItem, searchParams)]
+  if (!editorStorage) {
+    return isRequest(selectedItem)
+      ? [buildRequestState(specification, selectedItem, searchParams)]
+      : [];
+  }
 
   const requests: RequestState[] = []
   for (const [, item] of walkItem(specification)) {
@@ -63,9 +66,9 @@ function restoreRequests(
       // Update state from search params as they should override storage
       updateRequestStateForSearchParams(state, searchParams)
       requests.push(state)
-    } else if (item.id === selectedRequestItem.id) {
+    } else if (item.id === selectedItem.id && isRequest(selectedItem)) {
       // Always add the selectedRequestItem even if not in storage
-      requests.push(buildRequestState(specification, selectedRequestItem, searchParams))
+      requests.push(buildRequestState(specification, selectedItem, searchParams))
     }
   }
 
@@ -86,7 +89,7 @@ function updateRequestStateForStorageData(state: RequestState, storageData: Requ
   }
 }
 function updateRequestStateForSearchParams(state: RequestState, searchParams: KeyValue[]) {
-  if (searchParams.find(([key, value]) => key === "request" && value === state.id)) {
+  if (searchParams.find(([key, value]) => (key === "request" || key === "item") && value === state.id)) {
     state.queryParameters = state.queryParameters.map(([key, value]) => {
       return [key, searchParams.find(it => it[0] === key)?.at(1) ?? value]
     })
@@ -123,21 +126,22 @@ export function EditorStateProvider({
 }: EditorStateProviderProps) {
   const [searchParams, setSearchParams] = useHistorySearchParams()
   const [editorStorage, setEditorStorage] = useEditorStorage()
-  const { specification, selectedRequest: [, item] } = useSpecification()
+  const { specification, selectedItem: [, item] } = useSpecification()
   const [requests, setRequests] = useState<RequestState[]>(
     restoreRequests(specification, item, editorStorage, searchParams)
   )
 
   useEffect(() => {
     setRequests(produce(draft => {
-      if (!draft.find(it => it.id === item.id)) {
+      if (!draft.find(it => it.id === item.id) && isRequest(item)) {
         draft.push(buildRequestState(specification, item, searchParams))
       }
     }))
   }, [setRequests, item, specification, searchParams])
 
   const activeRequest = useMemo(() => {
-    return requests.find(it => it.id === item.id) ?? buildRequestState(specification, item, searchParams)
+    return requests.find(it => it.id === item.id)
+      ?? (isRequest(item) ? buildRequestState(specification, item, searchParams) : undefined)
   }, [requests, item, specification, searchParams])
 
   const updateActiveRequest = useCallback((reducer: Dispatch<WritableDraft<RequestState>>) => {
@@ -152,7 +156,7 @@ export function EditorStateProvider({
   const resetActiveRequest = useCallback(() => {
     setRequests(produce(draft => {
       const index = draft.findIndex(it => it.id === item.id)
-      if (index !== -1) {
+      if (index !== -1 && isRequest(item)) {
         draft[index] = toRequestState(specification, item)
         // Set random changeId to indicate request changed due to reset action
         draft[index].changeId = Math.random().toString()
@@ -171,8 +175,13 @@ export function EditorStateProvider({
 
   useDebounceEffect(() => {
     const parameters: KeyValue[] = [
-      ["request", activeRequest.id]
+      ["item", item.id]
     ]
+    if (!activeRequest || !isRequest(item)) {
+      setSearchParams(parameters)
+      return
+    }
+
     if (activeRequest.body !== item.request.body)
       parameters.push(["body", activeRequest.body])
     for (const [key, value] of activeRequest.queryParameters) {
@@ -195,11 +204,10 @@ export function EditorStateProvider({
     }
 
     setSearchParams(parameters)
-  }, [activeRequest.id, requests], { wait: 200 })
+  }, [item.id, activeRequest?.id, requests], { wait: 200 })
 
   useDebounceEffect(() => {
     setEditorStorage({
-      selectedRequestId: activeRequest.id,
       requests: requests.map(it => ({
         id: it.id,
         body: it.body,

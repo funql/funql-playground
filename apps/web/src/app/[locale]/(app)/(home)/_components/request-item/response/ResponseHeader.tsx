@@ -5,7 +5,7 @@ import {cn} from "@workspace/ui/lib/utils";
 import {ResizablePanelTrigger} from "@workspace/ui/components/resizable";
 import {ArrowRightLeft, ChevronsUp} from "lucide-react";
 import {Button} from "@workspace/ui/components/button";
-import ResponseMetadata from "@/app/[locale]/(app)/(home)/_components/response/ResponseMetadata";
+import ResponseMetadata from "@/app/[locale]/(app)/(home)/_components/request-item/response/ResponseMetadata";
 import {TabsList, TabsTrigger} from "@workspace/ui/components/tabs";
 import {Separator} from "@workspace/ui/components/separator";
 import {useEditorState} from "@/app/[locale]/(app)/(home)/_hooks/useEditorState";
@@ -32,14 +32,14 @@ export default function ResponseHeader({
         <ResizablePanelTrigger
           className={cn(
             "inline-flex items-center gap-1 hover:text-foreground",
-            activeRequest.response && "hidden sm:inline-flex"
+            activeRequest?.response && "hidden sm:inline-flex"
           )}
         >
           <ArrowRightLeft className="size-4"/>
           {t("titleText")}
         </ResizablePanelTrigger>
 
-        {activeRequest.response && (
+        {activeRequest?.response && (
           <>
             <Separator orientation="vertical" className="max-h-4 hidden sm:block"/>
 
@@ -68,7 +68,9 @@ function ResponseTabsList() {
   const t = useTranslations("HomePage.response.ResponseHeader.tabs")
 
   const { activeRequest } = useEditorState()
-  const fetchResponse = activeRequest.response && isFetchResponse(activeRequest.response) ? activeRequest.response : undefined
+  const fetchResponse = activeRequest?.response && isFetchResponse(activeRequest.response)
+    ? activeRequest.response
+    : undefined
 
   return (
     <TabsList className="gap-3 p-0">

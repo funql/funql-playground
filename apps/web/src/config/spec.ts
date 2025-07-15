@@ -55,9 +55,34 @@ const listSets: SpecificationRequestItem = {
   }
 }
 
+const playgroundDescription = `\
+# Welcome to the FunQL Playground
+
+The FunQL Playground allows anyone to experiment with [FunQL](https://funql.io) — the Functional Query Language — 
+through a simple UI.
+
+To learn more about FunQL, visit [funql.io](https://funql.io).
+
+---
+
+## Getting started
+
+1. Select a **request** from the sidebar  
+2. Edit the **FunQL query parameters**  
+3. Click **Send** to see the result
+
+---
+
+## Learn more
+
+- 📖 [funql.io](https://funql.io) – official documentation  
+- 💻 [GitHub repository](https://github.com/funql/funql-playground) – source code
+`
+
 export const funqlPlaygroundApiSpec: Specification = {
-  id: "root",
+  id: "playgroundApi",
   name: "FunQL Playground API",
+  description: playgroundDescription,
   basePath: "https://api.play.funql.io",
   items: [
     {

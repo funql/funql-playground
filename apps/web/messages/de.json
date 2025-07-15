@@ -73,6 +73,14 @@
         "titleSrText": "Spezifikationsnavigation",
         "toggleMenuSrText": "Menü umschalten"
       }
+    },
+    "group-item": {
+      "GroupItem": {
+        "noDescriptionText": "Dieser Ordner hat keine Beschreibung"
+      },
+      "GroupTryRequests": {
+        "title": "Einige Requests in diesem Ordner"
+      }
     }
   },
   "funql": {

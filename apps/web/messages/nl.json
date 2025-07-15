@@ -73,6 +73,14 @@
         "titleSrText": "Specificatie-navigatie",
         "toggleMenuSrText": "Open menu"
       }
+    },
+    "group-item": {
+      "GroupItem": {
+        "noDescriptionText": "Deze map heeft geen beschrijving"
+      },
+      "GroupTryRequests": {
+        "title": "Enkele requests in deze map"
+      }
     }
   },
   "funql": {

@@ -27,11 +27,11 @@ export default function RequestQueryParameters({
   // Only use initial queryParameters value for activeRequest to avoid overriding CodeEditor value on each change,
   // causing issues with fast updates
   const queryParameters = useMemo(() => {
-    return activeRequest.queryParameters
+    return activeRequest?.queryParameters
     // Only recalculate on ID changes so we get the latest initial value for the 'activeRequest' and not any subsequent
     // changes to queryParameters
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeRequest.id, activeRequest.changeId])
+  }, [activeRequest?.id, activeRequest?.changeId])
 
   return (
     <div
@@ -46,7 +46,7 @@ export default function RequestQueryParameters({
       </span>
 
       <div className="flex flex-col border rounded-sm min-w-fit">
-        {queryParameters.map(([key, value], index) => (
+        {queryParameters?.map(([key, value], index) => (
           <Fragment key={key}>
             <div className="flex gap-2 min-h-10">
               <span className="min-w-24 mt-2.5 ps-2.5 text-sm">
@@ -59,7 +59,7 @@ export default function RequestQueryParameters({
                  */
               }
               <FunQLEditor
-                key={activeRequest.changeId}
+                key={activeRequest?.changeId}
                 className="flex-1 shrink border-l py-2"
                 inline={true}
                 value={value}
