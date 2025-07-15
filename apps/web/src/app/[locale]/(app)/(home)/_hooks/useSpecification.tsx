@@ -53,7 +53,6 @@ export function SpecificationProvider({
       ?? searchParams.find(it => it[0] === "request")?.at(1)
     let firstRequestId = undefined
     let foundUrlId = undefined
-    let foundStoredId = undefined
     let foundInitialId = undefined
     for (const [, currentItem] of walkItem(specification)) {
       if (!firstRequestId && isRequest(currentItem)) {
@@ -72,7 +71,7 @@ export function SpecificationProvider({
       }
     }
 
-    const foundId = foundUrlId ?? foundStoredId ?? foundInitialId ?? firstRequestId
+    const foundId = foundUrlId ?? foundInitialId ?? firstRequestId
     if (!foundId)
       throw new Error("No initial item found")
     return foundId

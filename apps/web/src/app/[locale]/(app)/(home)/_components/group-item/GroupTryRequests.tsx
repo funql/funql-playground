@@ -22,9 +22,6 @@ export default function GroupTryRequests({
 
   const { setSelectedItemId, selectedItem: [, item] } = useSpecification()
 
-  if (!isGroup(item))
-    return undefined
-
   const requests = useMemo(() => {
     const currentRequests: [SpecificationGroupItem, SpecificationRequestItem][] = []
     for (const [parents, child] of walkItem(item)) {
@@ -39,6 +36,9 @@ export default function GroupTryRequests({
 
     return currentRequests
   }, [item])
+
+  if (!isGroup(item))
+    return undefined
 
   return (
     <div
