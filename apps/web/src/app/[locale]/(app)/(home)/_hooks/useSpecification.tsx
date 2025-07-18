@@ -49,8 +49,6 @@ export function SpecificationProvider({
 
   const findInitialId = () => {
     const urlItemId = searchParams.find(it => it[0] === "item")?.at(1)
-      // Backwards compatible with old 'request' query parameter
-      ?? searchParams.find(it => it[0] === "request")?.at(1)
     let firstRequestId = undefined
     let foundUrlId = undefined
     let foundInitialId = undefined
@@ -88,8 +86,6 @@ export function SpecificationProvider({
 
   useEffect(() => {
     const itemId = searchParams.find(it => it[0] === "item")?.at(1)
-      // Backwards compatible with old 'request' query parameter
-      ?? searchParams.find(it => it[0] === "request")?.at(1)
     if (itemId && findItem(specification, itemId)) {
       setSelectedItemId(itemId)
     } else {

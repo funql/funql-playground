@@ -89,7 +89,7 @@ function updateRequestStateForStorageData(state: RequestState, storageData: Requ
   }
 }
 function updateRequestStateForSearchParams(state: RequestState, searchParams: KeyValue[]) {
-  if (searchParams.find(([key, value]) => (key === "request" || key === "item") && value === state.id)) {
+  if (searchParams.find(([key, value]) => key === "item" && value === state.id)) {
     state.queryParameters = state.queryParameters.map(([key, value]) => {
       return [key, searchParams.find(it => it[0] === key)?.at(1) ?? value]
     })
