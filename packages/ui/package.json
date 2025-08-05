@@ -34,7 +34,7 @@
     "@types/react-dom": "^19.1.6",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3"
   },
