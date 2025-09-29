@@ -17,7 +17,7 @@
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "@codemirror/language": "^6.11.2",
+    "@codemirror/language": "^6.11.3",
     "@lezer/highlight": "^1.2.1",
     "@lezer/lr": "^1.4.2"
   },
