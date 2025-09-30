@@ -2,7 +2,7 @@ import {hasLocale, Locale} from 'next-intl'
 import {notFound} from 'next/navigation'
 import {routing} from '@/i18n/routing'
 import { Geist, Geist_Mono } from "next/font/google"
-import React, {ReactNode} from "react";
+import React from "react";
 import {Providers} from "@/app/[locale]/providers";
 import {getTranslations, setRequestLocale} from "next-intl/server";
 import {cn} from "@workspace/ui/lib/utils";
@@ -23,10 +23,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
 }
 
-type LocaleLayoutProps = {
-  children: ReactNode
-  params: Promise<{locale: Locale}>
-}
+type LocaleLayoutProps = LayoutProps<"/[locale]">
 
 type MetadataProps = Omit<LocaleLayoutProps, "children">
 
@@ -34,7 +31,7 @@ export async function generateMetadata({
   params
 }: MetadataProps): Promise<Metadata> {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: "LocaleLayout.metadata" })
+  const t = await getTranslations({ locale: locale as Locale, namespace: "LocaleLayout.metadata" })
 
   return {
     title: "FunQL Playground API",
