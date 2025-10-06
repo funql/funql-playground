@@ -136,8 +136,8 @@ importers:
         specifier: ^9.34.0
         version: 9.34.0
       '@next/eslint-plugin-next':
-        specifier: ^15.4.1
-        version: 15.4.1
+        specifier: ^15.5.4
+        version: 15.5.4
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.39.1
         version: 8.39.1(@typescript-eslint/parser@8.42.0(eslint@9.36.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.36.0(jiti@2.5.1))(typescript@5.8.3)
@@ -321,6 +321,9 @@ packages:
   '@codemirror/commands@6.8.1':
     resolution: {integrity: sha512-KlGVYufHMQzxbdQONiLyGQDUW0itrLZwq3CcY7xpv9ZLRHqzkBSoteocBHtMCoY7/Ci4xhzSrToIeLg7FxHuaw==}
 
+  '@codemirror/commands@6.9.0':
+    resolution: {integrity: sha512-454TVgjhO6cMufsyyGN70rGIfJxJEjcqjBG2x2Y03Y/+Fm99d3O/Kv1QDYWuG6hvxsgmjXmBuATikIIYvERX+w==}
+
   '@codemirror/lang-json@6.0.2':
     resolution: {integrity: sha512-x2OtO+AvwEHrEwR0FyyPtfDUiloG3rnVTSZV1W8UteaLL8/MajQd8DpvUb2YVzC+/T18aSDv0H9mu+xw0EStoQ==}
 
@@ -329,6 +332,9 @@ packages:
 
   '@codemirror/lint@6.8.5':
     resolution: {integrity: sha512-s3n3KisH7dx3vsoeGMxsbRAgKe4O1vbrnKBClm99PU0fWxmxsx5rR2PfqQgIt+2MMJBHbiJ5rfIdLYfB9NNvsA==}
+
+  '@codemirror/lint@6.9.0':
+    resolution: {integrity: sha512-wZxW+9XDytH3SKvS8cQzMyQCaaazH8XL1EMHleHe00wVzsv7NBQKVW2yzEHrRhmM7ZOhVdItPbvlRBvMp9ej7A==}
 
   '@codemirror/search@6.5.11':
     resolution: {integrity: sha512-KmWepDE6jUdL6n8cAAqIpRmLPBZ5ZKnicE8oGU/s3QrAVID+0VhLFrzUucVKHG5035/BSykhExDL/Xm7dHthiA==}
@@ -676,8 +682,8 @@ packages:
   '@next/env@15.5.4':
     resolution: {integrity: sha512-27SQhYp5QryzIT5uO8hq99C69eLQ7qkzkDPsk3N+GuS2XgOgoYEeOav7Pf8Tn4drECOVDsDg8oj+/DVy8qQL2A==}
 
-  '@next/eslint-plugin-next@15.4.1':
-    resolution: {integrity: sha512-lQnHUxN7mMksK7IxgKDIXNMWFOBmksVrjamMEURXiYfo7zgsc30lnU8u4y/MJktSh+nB80ktTQeQbWdQO6c8Ow==}
+  '@next/eslint-plugin-next@15.5.4':
+    resolution: {integrity: sha512-SR1vhXNNg16T4zffhJ4TS7Xn7eq4NfKfcOsRwea7RIAHrjRpI9ALYbamqIJqkAhowLlERffiwk0FMvTLNdnVtw==}
 
   '@next/swc-darwin-arm64@15.5.4':
     resolution: {integrity: sha512-nopqz+Ov6uvorej8ndRX6HlxCYWCO3AHLfKK2TYvxoSB2scETOcfm/HSS3piPqc3A+MUgyHoqE6je4wnkjfrOA==}
@@ -4913,6 +4919,13 @@ snapshots:
       '@codemirror/view': 6.38.4
       '@lezer/common': 1.2.3
 
+  '@codemirror/commands@6.9.0':
+    dependencies:
+      '@codemirror/language': 6.11.3
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.38.4
+      '@lezer/common': 1.2.3
+
   '@codemirror/lang-json@6.0.2':
     dependencies:
       '@codemirror/language': 6.11.3
@@ -4931,6 +4944,12 @@ snapshots:
     dependencies:
       '@codemirror/state': 6.5.2
       '@codemirror/view': 6.38.1
+      crelt: 1.0.6
+
+  '@codemirror/lint@6.9.0':
+    dependencies:
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.38.4
       crelt: 1.0.6
 
   '@codemirror/search@6.5.11':
@@ -5294,7 +5313,7 @@ snapshots:
 
   '@next/env@15.5.4': {}
 
-  '@next/eslint-plugin-next@15.4.1':
+  '@next/eslint-plugin-next@15.5.4':
     dependencies:
       fast-glob: 3.3.1
 
@@ -6946,9 +6965,9 @@ snapshots:
   codemirror@6.0.1:
     dependencies:
       '@codemirror/autocomplete': 6.18.6
-      '@codemirror/commands': 6.8.1
+      '@codemirror/commands': 6.9.0
       '@codemirror/language': 6.11.3
-      '@codemirror/lint': 6.8.5
+      '@codemirror/lint': 6.9.0
       '@codemirror/search': 6.5.11
       '@codemirror/state': 6.5.2
       '@codemirror/view': 6.38.4
